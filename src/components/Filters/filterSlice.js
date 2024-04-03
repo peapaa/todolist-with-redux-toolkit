@@ -3,11 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   search: "",
   status: "All",
-  prority: [],
+  priority: [],
 };
 
 const filterSlice = createSlice({
-  name: "filter",
+  name: "filters",
   initialState,
   reducers: {
     filterBySearch: (state, action) => {
@@ -17,7 +17,7 @@ const filterSlice = createSlice({
       state.status = action.payload;
     },
     filterByPrority: (state, action) => {
-      state.prority.push(action.payload);
+      state.priority = action.payload;
     },
   },
 });

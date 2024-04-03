@@ -28,11 +28,14 @@ const todoListSlice = createSlice({
     addTodo: (state, action) => {
       state.push(action.payload);
     },
-    // toggleClick: (state,action) => {
-
-    // }
+    toggleClick: (state, action) => {
+      const currentTodo = state.find((todo) => todo.id === action.payload);
+      if (currentTodo) {
+        currentTodo.completed = !currentTodo.completed;
+      }
+    },
   },
 });
 
-export const { addTodo } = todoListSlice.actions;
+export const { addTodo, toggleClick } = todoListSlice.actions;
 export default todoListSlice.reducer;

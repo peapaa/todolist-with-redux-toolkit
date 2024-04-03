@@ -4,22 +4,23 @@ import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import { addTodo } from "./todoListSlice";
-import { todoListSelector } from "../../redux/selector";
+import { todoListRemaining } from "../../redux/selector";
 export default function TodoList() {
   const [todoName, setTodoName] = useState("");
-  const [prority, setPrority] = useState("");
+  const [priority, setPrority] = useState("");
   const dispatch = useDispatch();
-  const todoList = useSelector(todoListSelector);
+  const todoList = useSelector(todoListRemaining);
+  console.log(todoList);
   const inputRef = useRef();
   console.log(todoName);
-  console.log(prority);
+  console.log(priority);
   const handleSubmit = () => {
     dispatch(
       addTodo({
         id: uuidv4(),
         name: todoName,
         completed: false,
-        prority: prority,
+        priority: priority,
       })
     );
     setTodoName("");
@@ -32,7 +33,7 @@ export default function TodoList() {
           <Todo
             key={todo.id}
             name={todo.name}
-            prioriry={todo.prority}
+            prioriry={todo.priority}
             id={todo.id}
             completed={todo.completed}
           />
@@ -49,7 +50,7 @@ export default function TodoList() {
           />
           <Select
             defaultValue="Medium"
-            value={prority}
+            value={priority}
             onChange={(value) => setPrority(value)}
           >
             <Select.Option value="High" label="High">
