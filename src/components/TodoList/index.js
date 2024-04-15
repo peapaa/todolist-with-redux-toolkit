@@ -3,7 +3,7 @@ import Todo from "../Todo";
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
-import { addTodo } from "./todoListSlice";
+import { addNewTodos, addTodo, addTodos } from "./todoListSlice";
 import { todoListRemaining } from "../../redux/selector";
 export default function TodoList() {
   const [todoName, setTodoName] = useState("");
@@ -15,8 +15,17 @@ export default function TodoList() {
   console.log(todoName);
   console.log(priority);
   const handleSubmit = () => {
+    // dispatch(
+    //   addTodo({
+    //     id: uuidv4(),
+    //     name: todoName,
+    //     completed: false,
+    //     priority: priority,
+    //   })
+    // );
+
     dispatch(
-      addTodo({
+      addNewTodos({
         id: uuidv4(),
         name: todoName,
         completed: false,
